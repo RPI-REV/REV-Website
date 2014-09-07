@@ -1,1 +1,7 @@
+# Silex directories
+vendor/*
+*/logs/*
+*/cache/*
 
+# Composer
+composer.lock

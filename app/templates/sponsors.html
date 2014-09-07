@@ -1,0 +1,49 @@
+{% macro sponsor(name, image_source, height, description) %}
+  {% import "base.html" as base %}
+  <div class="row"><center>
+    <div class="col-lg-6">
+      <h2>{{ name }}</h2>
+      <p> {{ description|default('') }} </p>
+    </div>
+    <div class="col-lg-6">
+      <img alt="Placeholder..." src="/assets/images/sponsors/{{ image_source }}" width="{{ height|default(300) }}">
+    </div>
+  </center></div>
+  {{ base.big_space() }}
+{% endmacro %}
+
+{% import _self as sponsors %}
+
+{% extends "base.html" %}
+{% block title %}REV - Sponsors{% endblock %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+    <h1>Sponsorship is key.</h1>
+    <p>
+      A lot of our funds come from sponsorship from private companies.
+      Without these funds, our club would not be able to do the amazing things it does.
+    </p>
+    <p><a class="btn btn-primary btn-lg" role="button" href="mailto:REV@union.rpi.edu">Learn about Sponsorship! &raquo;</a></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <center><h1>
+      Our Sponsors
+    </h1></center>
+  </div>
+  {{ base.big_space() }}
+  {{ sponsors.sponsor("Rensselaer Polytechnic Institute", "rpi.jpg") }}
+  {{ sponsors.sponsor("Solidworks", "solidworks.jpg") }}
+  {{ sponsors.sponsor("RPI ECSE Department", "ecse.jpg") }}
+  {{ sponsors.sponsor("Douglas Mercer 77 Lab at RPI", "mercer.jpg") }}
+  {{ sponsors.sponsor("Yarde Metals", "yarde.jpg", 200) }}
+  {{ sponsors.sponsor("Noahs", "noahs.jpg") }}
+  {{ sponsors.sponsor("Capial District Clean Communities", "cdcc.jpg", 200) }}
+  {{ sponsors.sponsor("Buchanans", "buchanans.png") }}
+  
+  <hr>
+</div>
+{% endblock %}
