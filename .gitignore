@@ -5,3 +5,6 @@ vendor/*
 
 # Composer
 composer.lock
+
+# Zed
+.zedstate

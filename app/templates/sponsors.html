@@ -1,9 +1,9 @@
-{% macro sponsor(name, image_source, height, description) %}
+{% macro sponsor(name, image_source, link, height, description) %}
   {% import "base.html" as base %}
-  <div class="row"><center>
+  <div class="row sponsor" link="{{ link|default('#') }}"><center>
     <div class="col-lg-6">
       <h2>{{ name }}</h2>
-      <p> {{ description|default('') }} </p>
+      <p>{{ description|default('') }}</p>
     </div>
     <div class="col-lg-6">
       <img alt="Placeholder..." src="/assets/images/sponsors/{{ image_source }}" width="{{ height|default(300) }}">
@@ -15,7 +15,13 @@
 {% import _self as sponsors %}
 
 {% extends "base.html" %}
+
 {% block title %}REV - Sponsors{% endblock %}
+
+{% block js_css %}
+<script src="/assets/js/sponsors.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="jumbotron">
   <div class="container">
@@ -35,6 +41,7 @@
     </h1></center>
   </div>
   {{ base.big_space() }}
+  
   {{ sponsors.sponsor("Rensselaer Polytechnic Institute", "rpi.jpg") }}
   {{ sponsors.sponsor("Solidworks", "solidworks.jpg") }}
   {{ sponsors.sponsor("RPI ECSE Department", "ecse.jpg") }}
@@ -45,5 +52,6 @@
   {{ sponsors.sponsor("Buchanans", "buchanans.png") }}
   
   <hr>
+  
 </div>
 {% endblock %}
