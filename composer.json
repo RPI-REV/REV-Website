@@ -1,9 +1,30 @@
 {
 	"require": {
 		"silex/silex": "1.2.1",
-		"twig/twig": "1.16.0"
+		"twig/twig": "1.16.0",
+		"mobiledetect/mobiledetectlib": "dev-master",
+		"propel/propel": "~2.0@dev",
+		"mthaml/silex-mthaml": "dev-master",
+		"coffeescript/coffeescript": "dev-master",
+		"tedivm/jshrink": "~1.0",
+		"natxet/CssMin": "dev-master",
+		"richthegeek/phpsass": "dev-master"
 	},
 	"scripts": {
-		"start": "php -S localhost:8000 -t app"
+		"start": "php -S localhost:8000 -t public_html",
+		"sql-build": "\"vendor/bin/propel\" sql:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
+		"model-build": "\"vendor/bin/propel\" model:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-classes\"",
+		"config-build": "\"vendor/bin/propel\" config:convert --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-conf\"",
+		"build": [
+		  "echo * building sql...",
+		  "composer sql-build",
+		  "echo * building models...",
+		  "composer model-build",
+		  "echo * building config...",
+		  "composer config-build"
+		]
+	},
+	"autoload": {
+	  "classmap": ["app/propel/generated-classes/"]
 	}
 }

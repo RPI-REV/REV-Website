@@ -6,7 +6,7 @@
       <p>{{ description|default('') }}</p>
     </div>
     <div class="col-lg-6">
-      <img alt="Placeholder..." src="/assets/images/sponsors/{{ image_source }}" width="{{ height|default(300) }}">
+      <img alt="Placeholder..." src="/images/sponsors/{{ image_source }}" width="{{ height|default(300) }}">
     </div>
   </center></div>
   {{ base.big_space() }}
@@ -19,7 +19,7 @@
 {% block title %}REV - Sponsors{% endblock %}
 
 {% block js_css %}
-<script src="/assets/js/sponsors.js"></script>
+{{ asset('sponsor.js') }}
 {% endblock %}
 
 {% block content %}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="solarrac_test" defaultIdMethod="native">
+  <table name="user" phpName="User">
+    <column name="id" type="varchar" size="10" required="true" primaryKey="true"/>
+    <column name="first_name" type="varchar" size="15" required="true"/>
+    <column name="last_name" type="varchar" size="15" required="true"/>
+    <column name="phone" type="varchar" size="10"/>
+    <column name="access" type="integer" defaultValue ="0"/>
+  </table>
+</database>
