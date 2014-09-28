@@ -51,6 +51,14 @@ $app->get('/marketing/', function(Application $app) {
 	return $app['twig']->render('marketing.html');
 })->bind('marketing');
 
+$app->get('/test/', function(Application $app) {
+  return $app['twig']->render('base.haml');
+});
+
+$app->get('/base/', function(Application $app) {
+  return $app['twig']->render('base.html');
+});
+
 $app->get('/assets/{type}/{name}/', $assets)
 ->assert('name', '.*');
 
