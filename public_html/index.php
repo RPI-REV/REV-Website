@@ -2,7 +2,6 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../app/propel/generated-conf/config.php';
-
 $assets = require __DIR__.'/assets.php';
 
 use Silex\Application;
@@ -40,7 +39,7 @@ $app->get('/', function(Application $app) use ($detect) {
 })->bind('home');
 
 $app->get('/cars/', function(Application $app) {
-	return $app['twig']->render('cars.html');
+  return $app['twig']->render('cars.haml');
 })->bind('cars');
 
 $app->get('/sponsors/', function(Application $app) {
@@ -50,14 +49,6 @@ $app->get('/sponsors/', function(Application $app) {
 $app->get('/marketing/', function(Application $app) {
 	return $app['twig']->render('marketing.html');
 })->bind('marketing');
-
-$app->get('/test/', function(Application $app) {
-  return $app['twig']->render('base.haml');
-});
-
-$app->get('/base/', function(Application $app) {
-  return $app['twig']->render('base.html');
-});
 
 $app->get('/assets/{type}/{name}/', $assets)
 ->assert('name', '.*');

@@ -29,3 +29,7 @@ html {
 body {
 	background-color: white;
 }
+
+.cars-image {
+  padding: 15px;
+}

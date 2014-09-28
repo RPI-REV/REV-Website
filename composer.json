@@ -11,6 +11,7 @@
 		"richthegeek/phpsass": "dev-master"
 	},
 	"scripts": {
+	  "pre-update-cmd": "php -r \"mkdir('app/propel/generated-classes')\";",
 		"start": "php -S localhost:8000 -t public_html",
 		"sql-build": "\"vendor/bin/propel\" sql:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
 		"model-build": "\"vendor/bin/propel\" model:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-classes\"",
