@@ -1,6 +1,9 @@
-- extends "base.haml"
+- extends 'base.haml'
 
 - block title "REV - Cars"
+
+- block css
+  = asset('cars.sass')
   
 - block nav_buttons
   %li <a href="#tachyon">Tachyon</a>

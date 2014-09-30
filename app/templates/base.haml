@@ -23,14 +23,14 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     
-    =vendor('bootstrap/css/bootstrap.min.css')
-    =vendor('jquery/jquery.min.js')
-    =vendor('bootstrap/js/bootstrap.js')
-    =asset('rev.css')
-    =asset('konami.js')
-    =asset('scroll.coffee')
-    - block js ""
-    - block css ""
+    = vendor('bootstrap/css/bootstrap.min.css')
+    = vendor('jquery/jquery.min.js')
+    = vendor('bootstrap/js/bootstrap.js')
+    = asset('base.sass')
+    = asset('konami.js')
+    = asset('scroll.coffee')
+    - block js ''
+    - block css ''
 
     
   %body 
@@ -63,7 +63,7 @@
                 %li <a href="https://www.facebook.com/pages/Rensselaer-Electric-Vehicle-REV/115564911841565">Facebook</a>
                 %li <a href="https://www.flickr.com/photos/117673995@N07/">Flickr</a>
          
-    =base.bigspace() 
+    = base.bigspace() 
     - block content ""
             
     %hr.featurette-divider

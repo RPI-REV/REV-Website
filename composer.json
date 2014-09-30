@@ -1,42 +1,49 @@
 {
   "name": "REV-Website",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The website for Rensselaer Electric Vehicle",
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Ryan Delaney",
-      "email": "delanr3@rpi.edu",
-      "role": "Lead Developer"
-    }
-  ],
-	"require": {
-		"silex/silex": "1.2.1",
-		"twig/twig": "1.16.0",
-		"mobiledetect/mobiledetectlib": "dev-master",
-		"propel/propel": "~2.0@dev",
-		"mthaml/silex-mthaml": "dev-master",
-		"coffeescript/coffeescript": "dev-master",
-		"tedivm/jshrink": "~1.0",
-		"natxet/CssMin": "dev-master",
-		"richthegeek/phpsass": "dev-master"
-	},
-	"scripts": {
-	  "pre-update-cmd": "php -r \"mkdir('app/propel/generated-classes')\";",
-		"start": "php -S localhost:8000 -t public_html",
-		"sql-build": "\"vendor/bin/propel\" sql:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
-		"model-build": "\"vendor/bin/propel\" model:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-classes\"",
-		"config-build": "\"vendor/bin/propel\" config:convert --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-conf\"",
-		"build": [
-		  "echo * building sql...",
-		  "composer sql-build",
-		  "echo * building models...",
-		  "composer model-build",
-		  "echo * building config...",
-		  "composer config-build"
-		]
-	},
-	"autoload": {
-	  "classmap": ["app/propel/generated-classes/"]
-	}
+  "authors": [{
+    "name": "Ryan Delaney",
+    "email": "delanr3@rpi.edu",
+    "role": "Lead Developer"
+  }],
+  "require": {
+    "silex/silex": "1.2.1",
+    "twig/twig": "1.16.0",
+    "mobiledetect/mobiledetectlib": "dev-master",
+    "propel/propel": "~2.0@dev",
+    "mthaml/silex-mthaml": "dev-master",
+    "coffeescript/coffeescript": "dev-master",
+    "tedivm/jshrink": "~1.0",
+    "natxet/CssMin": "dev-master",
+    "richthegeek/phpsass": "dev-master"
+  },
+  "scripts": {
+    "pre-update-cmd": "php -r \"mkdir('app/propel/generated-classes')\";",
+    "start": "php -S localhost:8000 -t public_html",
+    "sql-build": "\"vendor/bin/propel\" sql:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
+    "model-build": "\"vendor/bin/propel\" model:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-classes\"",
+    "config-build": "\"vendor/bin/propel\" config:convert --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-conf\"",
+    "build": [
+      "echo ---> ensuring js directory",
+      "php -r \"mkdir('app/assets/js')\";",
+      "echo ---> ensuring coffee directory",
+      "php -r \"mkdir('app/assets/coffee')\";",
+      "echo ---> ensuring css directory",
+      "php -r \"mkdir('app/assets/css')\";",
+      "echo ---> ensuring sass directory",
+      "php -r \"mkdir('app/assets/sass')\";",
+      "echo ---> building sql...",
+      "composer sql-build",
+      "echo ---> building models...",
+      "composer model-build",
+      "echo ---> building config...",
+      "composer config-build",
+      "echo ---> dumping autoload",
+      "composer dump-autoload"]
+  },
+  "autoload": {
+    "classmap": ["app/propel/generated-classes/"]
+  }
 }

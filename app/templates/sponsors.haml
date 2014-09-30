@@ -7,7 +7,7 @@
         %p= description|default('')
       .col-lg-6
         %img{:alt => '',  :src => '/images/sponsors/'~image, :width => height|default(300)}
-  =base.bigspace()
+  = base.bigspace()
 - import _self as sponsors
 
 - extends "base.haml"
@@ -15,7 +15,7 @@
 - block title "REV - Sponsors"
 
 - block js
-  =asset('sponsor.js')
+  = asset('sponsor.js')
   
 - block content
   .jumbotron
@@ -33,14 +33,14 @@
       %center 
         %h1 Our Sponsors
         
-    =base.bigspace()
-    =sponsors.sponsor("Rensselaer Polytechnic Institute", "rpi.jpg")
-    =sponsors.sponsor("Solidworks", "solidworks.jpg")
-    =sponsors.sponsor("RPI ECSE Department", "ecse.jpg")
-    =sponsors.sponsor("Douglas Mercer 77 Lab at RPI", "mercer.jpg")
-    =sponsors.sponsor("Yarde Metals", "yarde.jpg", 200)
-    =sponsors.sponsor("Noahs", "noahs.jpg")
-    =sponsors.sponsor("Capial District Clean Communities", "cdcc.jpg", 200)
-    =sponsors.sponsor("Buchanans", "buchanans.png")
+    = base.bigspace()
+    = sponsors.sponsor("Rensselaer Polytechnic Institute", "rpi.jpg")
+    = sponsors.sponsor("Solidworks", "solidworks.jpg")
+    = sponsors.sponsor("RPI ECSE Department", "ecse.jpg")
+    = sponsors.sponsor("Douglas Mercer 77 Lab at RPI", "mercer.jpg")
+    = sponsors.sponsor("Yarde Metals", "yarde.jpg", 200)
+    = sponsors.sponsor("Noahs", "noahs.jpg")
+    = sponsors.sponsor("Capial District Clean Communities", "cdcc.jpg", 200)
+    = sponsors.sponsor("Buchanans", "buchanans.png")
     
     %hr

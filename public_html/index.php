@@ -48,7 +48,7 @@ $detect = new Mobile_Detect;
 $app['debug'] = true;
 
 $app->get('/', function(Application $app) use ($detect) {
-	return $app['twig']->render('home.html', [
+	return $app['twig']->render('home.haml', [
 		'mobile' => $detect->isMobile()
 	]);
 })->bind('home');
@@ -62,7 +62,7 @@ $app->get('/sponsors/', function(Application $app) {
 })->bind('sponsors');
 
 $app->get('/marketing/', function(Application $app) {
-	return $app['twig']->render('marketing.html');
+	return $app['twig']->render('marketing.haml');
 })->bind('marketing');
 
 $app->get('/assets/{type}/{name}/', $assets)

@@ -1,0 +1,86 @@
+- macro slideshow(pictures)
+  .carousel.slide#pictures(data-ride="carousel")
+    %ul.carousel-indicators
+      - for picture in pictures
+        - if loop.first
+          %li.active(data-target="#pictures" data-slide-to="0")
+        - else
+          %li{:data => {target: "#pictures", "slide-to": (loop.index - 1) }}
+          
+    .carousel-inner
+      - for picture in pictures
+        .item{:class => loop.first ? 'active' }
+          %center 
+            %img{:src => "images/slideshow/"~picture, :alt => "slide", :height => "654"}
+            
+          .container
+            .carousel-caption
+            
+    %a.left.carousel-control(href="#pictures" data-slide="prev")
+      %span.glyphicon.glyphicon-chevron-left
+      
+    %a.right.carousel-control(href="#pictures" data-slide="next")
+      %span.glyphicon.glyphicon-chevron-right
+          
+- import _self as home
+- extends "base.haml"
+- block title "REV - Home"
+
+- block css
+  = asset("home.sass")
+
+- block nav_buttons
+  %li <a href="#">Home</a>
+  %li <a href="#about">About Us</a>
+  %li <a href="#team">Our Team</a>
+  %li <a href="#marketing">Marketing</a>
+  %li <a href="#join">Join!</a>
+  
+- block content
+  - if not mobile
+    = home.slideshow(["team_picture.jpg", "jamie.jpg", "tachyon_face.jpg", "photon1.jpg", "photon2.jpg", "team_picture2.jpg"])
+    
+  %section#about
+    .container
+      %h1 Rensselaer Electric Vehicle
+      %p.lead We design and build electric cars from the ground up
+      %p
+        Rensselaer Electric Vehicle (REV) is a student organization for the 
+        design of electric vehicles at Rensselaer Polytechnic Institute.
+        The team, formerly known as the RPI Solar Car Racing Team, has competed 
+        in the Shell Eco-marathon since 2011. We have built three cars since we
+        were founded, and in 2014 we hope to compete in a new category, 
+        Urban Concept.
+        
+  %section#team
+    .container
+      %h1 Our Team
+      %p.lead Our two departments collaborate to create the best possible product
+      .col-sm-6
+        %p
+          <b>The mechanical team</b> designs the body, chassis, and mechanical systems of our car.
+          They use software such as Solidworks to aid with design, and to vusialize the final project.
+          A lot a machining is done in-house, using RPI's machine shops.
+          
+      .col-sm-6
+        %p
+          <b>The electrical team</b> creates systems to control the car. They use control hardware such as Arduinos and Rasperry Pi's.
+          Software development in done with C, Python, and bash scripts. They use KiCAD for schematic and PCB design.
+          
+  %section#marketing
+    .container
+      %h1 REV Marketing
+      %p.lead Much more than just a car
+      %p
+        REV is a very diverse team that accepts and appreciates all backgrounds. 
+        Not only do we give our member’s an opportunity to explore engineering, we give them the opportunity to run the business side of our team
+      %a.btn.btn-default(type="button" href="/marketing") Marketing Site
+      
+  %section#join
+    .container
+      %h1 Join the Team!
+      %p.lead We try to provide a welcoming and open environment
+      %p
+        Our club has a strong focus on older members working with new members, and helping incoming students along.
+        We provide opportunities for new students to get hands-on experiance quickly, as well as teach them basic design principles and practices.
+        We meet in Ricketts 101 Tuesdays and Wednesdays from 6-8 and Saturdays from 12-3.
