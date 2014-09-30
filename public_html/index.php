@@ -26,6 +26,21 @@ $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset) {
   }
 }));
 
+$app['twig']->addFunction(new \Twig_SimpleFunction('vendor', function ($asset) {
+  $type = end(explode('.', $asset));
+  $path = explode('/', $asset);
+  array_splice($path, 1, 0, 'dist');
+  $path = implode('/', $path);
+  
+  if ($type === 'js') {
+    echo '<script src="/vendor/'.$path.'"></script>"';
+  } else if ($type === 'css') {
+    echo '<link rel="stylesheet" href="/vendor/'.$path.'">';
+  } else {
+    echo '';
+  }
+}));
+
 $app->register(new SilexMtHaml\MtHamlServiceProvider());
 
 $detect = new Mobile_Detect;
@@ -43,7 +58,7 @@ $app->get('/cars/', function(Application $app) {
 })->bind('cars');
 
 $app->get('/sponsors/', function(Application $app) {
-	return $app['twig']->render('sponsors.html');
+	return $app['twig']->render('sponsors.haml');
 })->bind('sponsors');
 
 $app->get('/marketing/', function(Application $app) {
@@ -52,6 +67,5 @@ $app->get('/marketing/', function(Application $app) {
 
 $app->get('/assets/{type}/{name}/', $assets)
 ->assert('name', '.*');
-
 
 $app->run();

@@ -1,4 +1,15 @@
 {
+  "name": "REV-Website",
+  "version": "0.0.1",
+  "description": "The website for Rensselaer Electric Vehicle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ryan Delaney",
+      "email": "delanr3@rpi.edu",
+      "role": "Lead Developer"
+    }
+  ],
 	"require": {
 		"silex/silex": "1.2.1",
 		"twig/twig": "1.16.0",
