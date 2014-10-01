@@ -4,6 +4,20 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
 
+function coffee_cache($file, $filename) {
+  $dir = __DIR__.'/../app/assets/cache/coffee/';
+  if (!file_exists($dir)) mkdir($dir, 0777, true);
+
+  $hash = hash('md5', $file);
+  $cached_file = @file_get_contents($dir.$hash);
+  if ($cached_file !== false) return $cached_file;
+
+  $compiled = CoffeeScript\Compiler::compile($file, ['filename' => $filename]);
+  file_put_contents($dir.$hash, $compiled);
+
+  return $compiled;
+}
+
 return function($type, $name, $path="/../app/assets") {
   $sass = new SassParser([
     'style' => 'compressed',
@@ -19,8 +33,8 @@ return function($type, $name, $path="/../app/assets") {
   try {
     switch ($type) {
       case 'coffee':
-        return new Response(\JShrink\Minifier::minify(CoffeeScript\Compiler::compile($file, ['filename' => $name.'.'.$type])), 200, [
-          'Content-Type' => 'application/javascript'  
+        return new Response(\JShrink\Minifier::minify(coffee_cache($file, $name.'.'.$type)), 200, [
+          'Content-Type' => 'application/javascript'
         ]);
         
       case 'js':
