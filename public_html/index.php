@@ -33,7 +33,7 @@ $app['twig']->addFunction(new \Twig_SimpleFunction('vendor', function ($asset) {
   $path = implode('/', $path);
   
   if ($type === 'js') {
-    echo '<script src="/vendor/'.$path.'"></script>"';
+    echo '<script src="/vendor/'.$path.'"></script>';
   } else if ($type === 'css') {
     echo '<link rel="stylesheet" href="/vendor/'.$path.'">';
   } else {
