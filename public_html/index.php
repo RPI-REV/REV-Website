@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../app/propel/generated-conf/config.php';
-$assets = require __DIR__.'/assets.php';
+$assets = require __DIR__.'/../app/assets.php';
 
 use Silex\Application;
 
