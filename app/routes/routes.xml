@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+  <route name="home" route="/" template="home.haml"/>
+  <route name="sponsors" route="/sponsors/" template="sponsors.haml"/>  
+  <route name="cars" route="/cars/" template="cars.haml"/>
+  <route name="marketing" route="/marketing/" template="marketing.haml"/>
+  <route route="/assets/{type}/{name}" controller="assets">
+    <assert name=".*"/>
+  </route>
+</routes>

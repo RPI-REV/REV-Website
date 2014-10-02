@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
 
 function coffee_cache($file, $filename) {
-  $dir = __DIR__.'/../app/assets/cache/coffee/';
+  $dir = __DIR__.'/../assets/cache/coffee/';
 
   $hash = hash('md5', $file);
   $cached_file = @file_get_contents($dir.$hash);
@@ -18,7 +18,7 @@ function coffee_cache($file, $filename) {
 }
 
 function js_cache($file) {
-  $dir = __DIR__.'/../app/assets/cache/js/';
+  $dir = __DIR__.'/../assets/cache/js/';
 
   $hash = hash('md5', $file);
   $cached_file = @file_get_contents($dir.$hash);
@@ -33,11 +33,11 @@ function js_cache($file) {
 function sass_cache($file) {
   $sass = new SassParser([
     'style' => 'compressed',
-    'load_paths' => [__DIR__.'/../app/assets/sass'],
+    'load_paths' => [__DIR__.'/../assets/sass'],
     'cache' => false
   ]);
   
-  $dir = __DIR__.'/../app/assets/cache/sass/';
+  $dir = __DIR__.'/../assets/cache/sass/';
 
   $hash = hash('md5', $file);
   $cached_file = @file_get_contents($dir.$hash);
@@ -51,7 +51,7 @@ function sass_cache($file) {
 
 
 function css_cache($file) {
-  $dir = __DIR__.'/../app/assets/cache/css/';
+  $dir = __DIR__.'/../assets/cache/css/';
 
   $hash = hash('md5', $file);
   $cached_file = @file_get_contents($dir.$hash);
@@ -64,7 +64,7 @@ function css_cache($file) {
 }
 
 
-return function($type, $name, $path="/../app/assets") {
+function assets($type, $name, $path="/../assets") {
   $file = file_get_contents(__DIR__.$path.'/'.$type.'/'.$name.'.'.$type);
   if ($file === false) {
     return new Response('Asset not found: '.$name.'.'.$type, 404);
