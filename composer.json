@@ -15,13 +15,14 @@
   "require": {
     "silex/silex": "1.2.1",
     "twig/twig": "1.16.0",
-    "mobiledetect/mobiledetectlib": "dev-master",
+    "jbinfo/mobile-detect-service-provider": "~1",
     "propel/propel": "~2.0@dev",
     "mthaml/silex-mthaml": "dev-master",
     "coffeescript/coffeescript": "dev-master",
     "tedivm/jshrink": "~1.0",
     "natxet/CssMin": "dev-master",
-    "richthegeek/phpsass": "dev-master"
+    "richthegeek/phpsass": "dev-master",
+    "igorw/config-service-provider": "1.2.*@dev"
   },
   "scripts": {
     "pre-update-cmd": "php -r \"mkdir('app/propel/generated-classes')\";",
