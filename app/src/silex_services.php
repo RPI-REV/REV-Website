@@ -1,5 +1,7 @@
 <?php
 
+$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+
 $app->register(new Silex\Provider\TwigServiceProvider(), [
   'twig.path' => '../app/templates' 
 ]);

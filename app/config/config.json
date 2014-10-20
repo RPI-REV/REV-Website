@@ -1,3 +1,13 @@
 {
-  "debug": true
+  "debug": true,
+  "club_api_key": false,
+  "db_settings": {
+    "host": "localhost",
+    "dbname": "solarrac_website",
+    "user": "solarrac",
+    "password": "solarrac"
+  },
+  "cas_settings": {
+    "host": false
+  }
 }

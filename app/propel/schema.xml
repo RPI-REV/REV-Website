@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<database name="solarrac_test" defaultIdMethod="native">
-  <table name="user" phpName="User">
-    <column name="id" type="varchar" size="10" required="true" primaryKey="true"/>
-    <column name="first_name" type="varchar" size="15" required="true"/>
-    <column name="last_name" type="varchar" size="15" required="true"/>
-    <column name="phone" type="varchar" size="10"/>
-    <column name="access" type="integer" defaultValue ="0"/>
+<database name="solarrac_website" defaultIdMethod="native">
+  <table name="Users" phpName="User">
+    <column name="Id" type="varchar" size="10" required="true" primaryKey="true"/>
+    <column name="Access" type="integer" defaultValue ="10"/>
+  </table>
+  <table name="BlogPosts" phpName="BlogPost">
+    <column name="Id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+    <column name="Title" type="longvarchar" required="true"/>
+    <column name="Body" type="clob" required="true"/>
+    <column name="Author" type="varchar" size="10" required="true"/>
+    <foreign-key foreignTable="Users">
+      <reference local="Author" foreign="Id"/>
+    </foreign-key>
   </table>
 </database>

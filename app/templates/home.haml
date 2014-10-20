@@ -11,7 +11,7 @@
       - for picture in pictures
         .item{:class => loop.first ? 'active' }
           %center 
-            %img{:src => "images/slideshow/"~picture, :alt => "slide", :height => "654"}
+            = asset('slideshow/' ~ picture, 654)
             
           .container
             .carousel-caption
@@ -41,6 +41,7 @@
     = home.slideshow(["team_picture.jpg", "jamie.jpg", "tachyon_face.jpg", "photon1.jpg", "photon2.jpg", "team_picture2.jpg"])
     
   %section#about
+  
     .container
       %h1 Rensselaer Electric Vehicle
       %p.lead We design and build electric cars from the ground up

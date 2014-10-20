@@ -11,6 +11,7 @@ foreach ($routes->route as $_route) {
   $template = '__NULL';
   $controller = '__NULL';
   $redirect = '__NULL';
+  $access = '__NULL';
   $r = false;
   
   foreach ($_route->attributes() as $prop => $val) {
@@ -20,11 +21,22 @@ foreach ($routes->route as $_route) {
   $name = $name != '__NULL' ? $name : $route;
   
   if ($template != '__NULL') {
-    $r = $app->get($route, function(Application $app) use ($template) {
-      return $app['twig']->render($template, [
-        'mobile' => $app["mobile_detect"]->isMobile() 
-      ]);
-    })->bind($name);
+    if ($access == '__NULL') {
+      $r = $app->get($route, function(Application $app) use ($template) {
+        return $app['twig']->render($template, [
+          'mobile' => $app['mobile_detect']->isMobile() 
+        ]);
+      })->bind($name);
+    } else {
+      $r = $app->get($route, function(Application $app) use ($template, $access) {
+        return CAS::requireLogin($access, function($user) use ($app, $template) {
+          return $app['twig']->render($template, [
+            'mobile' => $app['mobile_detect']->isMobile(),
+            'user' => $user
+          ]);
+        });
+      })->bind($name);
+    }
   } else if ($controller != '__NULL') {
     if ($method === 'get') {
       $r = $app->get($route, $controller)->bind($name);

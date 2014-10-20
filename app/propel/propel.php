@@ -1,9 +1,10 @@
 <?php
 
-$settings = parse_ini_file(__DIR__.'/../../key.ini', true);
-$dbname = 'solarrac_' . $settings['database']['dbname']; //'solarrac_test';
-$user = 'solarrac_' . $settings['database']['user'];
-$password = $settings['database']['password'];
+$settings = json_decode(file_get_contents(__DIR__.'/../config/config.json'), true);
+$dbname = $settings['db_settings']['dbname']; // 'solarrac_test';
+$user = $settings['db_settings']['user']; // 'solarrac_admin';
+$password = $settings['db_settings']['password'];
+$host = $settings['db_settings']['host'];
 
 return [
     'propel' => [
@@ -12,7 +13,7 @@ return [
                 $dbname => [
                     'adapter' => 'mysql',
                     'classname' => 'Propel\Runtime\Connection\ConnectionWrapper',
-                    'dsn' => 'mysql:host=http://db.union.rpi.edu;dbname='.$dbname,
+                    'dsn' => 'mysql:host='.$host.';dbname='.$dbname,
                     'user' => $user,
                     'password' => $password,
                     'attributes' => []
