@@ -20,3 +20,6 @@ app/propel/generated-conf/*
 
 # Cache
 app/assets/cache/*
+
+# IntelliJ Family
+.idea/

@@ -1,4 +1,24 @@
-!!!
+// - extends 'base.haml'
+// - block title 'REV - User'
+// - block css
+//   = vendor('bootstrap-markdown/css/bootstrap-markdown.min.css')
+  
+// - block js
+//   = vendor('markdown/lib/markdown.js')
+//   = vendor('bootstrap-markdown/js/bootstrap-markdown.js')
 
-TEST
-= user.id
+// - block navbar ''
+// - block content
+//   %form(role="form")
+//     .form-group
+//       %label(for="blog_title") Title
+//       %input.form-control(type="text" id="blog_title" placeholder="Blog Post Title")
+      
+//     .form-group
+//       %label(for="blog_content") Content
+//       %textarea(id="blog_content" data-provide="markdown" rows="10" placeholder="Blog Post Content")
+      
+// - block footer ''
+
+!!!
+= user.name

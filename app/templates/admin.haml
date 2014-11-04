@@ -1,0 +1,17 @@
+- extends 'base.haml'
+- block content
+  %br
+  .container
+    .row
+      %h1 REV Admin Panel
+      .col-md-4
+        %h3 Create A User
+        %form(action="#{url('newUser')}" method="post" role="form")
+          .form-group
+            %label(for="id") RCS ID
+            %input.form-control(name="id" id="id" type="text" placeholder="smithj2")
+          .form-group
+            %label(for="access") Access Level
+            %input.form-control(name="access" id="access" type="number" value="10")
+          %button.btn.btn-primary(type="submit") Submit
+  %br

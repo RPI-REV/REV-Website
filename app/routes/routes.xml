@@ -4,7 +4,10 @@
   <route name="sponsors" route="/sponsors/" template="sponsors.haml"/>  
   <route name="cars" route="/cars/" template="cars.haml"/>
   <route name="marketing" route="/marketing/" template="marketing.haml"/>
-  <route name="user" route="/user/" template="user.haml" access="10"/>
+  <route name="blog" route="/blog/" controller="blog"/>
+  <route name="newBlogPost" route="/blog/" method="post" controller="newBlogPost"/>
+  <route name="admin" route="/admin/" controller="admin"/>
+  <route name="newUser" route="/admin/" method="post" controller="newUser"/>
   <route route="/assets/{type}/{name}" controller="assets">
     <assert name=".*"/>
   </route>

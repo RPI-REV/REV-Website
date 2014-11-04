@@ -15,7 +15,7 @@ foreach ($routes->route as $_route) {
   $r = false;
   
   foreach ($_route->attributes() as $prop => $val) {
-    $$prop = (string)$val;
+    $$prop = (string) $val;
   }
   
   $name = $name != '__NULL' ? $name : $route;
@@ -42,6 +42,8 @@ foreach ($routes->route as $_route) {
       $r = $app->get($route, $controller)->bind($name);
     } else if ($method === 'post') {
       $r = $app->post($route, $controller)->bind($name);
+    } else if ($method === '*') {
+      $r = $app->match($route, $controller)->bind($name);
     }
   } else if ($redirect != '__NULL') {
     $r = $app->redirect($redirect);

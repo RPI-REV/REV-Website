@@ -1,13 +1,13 @@
 - macro sponsor(name, image, height, link, description)
-  - import "base.haml" as base
   .row.sponsor(link = link|default('#'))
     %center
       .col-lg-6
         %h2= name
         %p= description|default('')
       .col-lg-6= asset('sponsors/' ~ image, height|default(100))
-  = base.bigspace()
-  
+  %br 
+  %br
+    
 - import _self as sponsors
 
 - extends "base.haml"
@@ -43,4 +43,3 @@
     = sponsors.sponsor("Capial District Clean Communities", "cdcc.jpg", 200)
     = sponsors.sponsor("Buchanans", "buchanans.png")
     
-    %hr

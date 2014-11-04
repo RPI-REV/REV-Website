@@ -27,17 +27,37 @@ Now that we have bower, time to install our bower dependencies with
 
 ## Composer
 
-First, you'll need a key.ini file. If you don't have one given to you, 
-make this file in the root directory and name it key.ini
+You can run the application without configuring the DB and CAS, 
+but user functions will always return `develp`. To configure the DB, go to
+`app/config/config.json` and edit the db config to 
 
-    [database]
-    dbname = "DB"
-    user = "user"
-    password = "password"
+     {
+        "db_settings": {
+            "host": $myhost,
+            "dbname": "solarrac_website",
+            "user": $myuser,
+            "password": $password
+        }
+     }
 
-Note that with this you can't actually use the 
-application, because you need to be set up with the 
-db.
+and to configure CAS for RPI for example, use
+
+    {
+        "cas_settings": {
+            "host": "cas-auth.rpi.edu",
+            "port": 443,
+            "method": "/cas"
+        }
+    }
+    
+The final setting is `club_api_key`, which is the secret key for the RPI union 
+querying users. If you have a club, you can find this at `clubs.union.rpi.edu`, 
+or you can set it to `false` and all user queries will return a test user. To 
+set `club_api_key`,
+
+    {
+        "club_api_key": $secret_key
+    }
 
 Now, install the PHP dependencies with
 

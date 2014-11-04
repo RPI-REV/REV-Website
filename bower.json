@@ -3,6 +3,9 @@
   "version": "0.0.4",
   "dependencies": {
     "bootstrap": "*",
-    "jquery": "*"
+    "jquery": "*",
+    "bootstrap-markdown": "*",
+    "markdown": "*",
+    "to-markdown": "*"
   }
 }

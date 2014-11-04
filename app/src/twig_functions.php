@@ -18,14 +18,11 @@ $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset, $h
 
 $app['twig']->addFunction(new \Twig_SimpleFunction('vendor', function ($asset) {
   $type = end(explode('.', $asset));
-  $path = explode('/', $asset);
-  array_splice($path, 1, 0, 'dist');
-  $path = implode('/', $path);
   
   if ($type === 'js') {
-    echo '<script src="/vendor/'.$path.'"></script>';
+    echo '<script src="/vendor/'.$asset.'"></script>';
   } else if ($type === 'css') {
-    echo '<link rel="stylesheet" href="/vendor/'.$path.'">';
+    echo '<link rel="stylesheet" href="/vendor/'.$asset.'">';
   } else {
     echo '';
   }

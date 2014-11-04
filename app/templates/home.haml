@@ -11,7 +11,7 @@
       - for picture in pictures
         .item{:class => loop.first ? 'active' }
           %center 
-            = asset('slideshow/' ~ picture, 654)
+            = asset('misc/' ~ picture, 654)
             
           .container
             .carousel-caption
@@ -28,6 +28,9 @@
 
 - block css
   = asset("home.sass")
+  
+- block js
+  = asset('konami.js')
 
 - block nav_buttons
   %li <a href="#">Home</a>
@@ -85,3 +88,9 @@
         Our club has a strong focus on older members working with new members, and helping incoming students along.
         We provide opportunities for new students to get hands-on experiance quickly, as well as teach them basic design principles and practices.
         We meet in Ricketts 101 Tuesdays and Wednesdays from 6-8 and Saturdays from 12-3.
+        
+    
+  #thisTeamisFantastic
+    %center 
+      %h1 We're a pretty great club to join
+      .row#easter_egg= asset('misc/easter_egg.png', 800)

@@ -1,15 +1,25 @@
 <?php
 
-$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
+use Aptoma\Twig\Extension\MarkdownExtension;
+use Aptoma\Twig\Extension\MarkdownEngine\MichelfMarkdownEngine;
+use Silex\Provider\UrlGeneratorServiceProvider;
+use Silex\Provider\TwigServiceProvider;
+use SilexMtHaml\MtHamlServiceProvider;
+use Binfo\Silex\MobileDetectServiceProvider;
+use Igorw\Silex\ConfigServiceProvider;
 
-$app->register(new Silex\Provider\TwigServiceProvider(), [
+$app->register(new UrlGeneratorServiceProvider());
+
+$app->register(new TwigServiceProvider(), [
   'twig.path' => '../app/templates' 
 ]);
 
+$app['twig']->addExtension(new MarkdownExtension(new MichelfMarkdownEngine()));
+
 require_once __DIR__.'/twig_functions.php';
 
-$app->register(new SilexMtHaml\MtHamlServiceProvider());
+$app->register(new MtHamlServiceProvider());
 
-$app->register(new Binfo\Silex\MobileDetectServiceProvider());
+$app->register(new MobileDetectServiceProvider());
 
-$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/../config/config.json"));
+$app->register(new ConfigServiceProvider(__DIR__."/../config/config.json"));

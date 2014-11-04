@@ -1,7 +1,7 @@
 <?php
 
-use \Silex\Appliction;
-use \Symfony\Component\HttpFoundation\Response;
+use Silex\Appliction;
+use Symfony\Component\HttpFoundation\Response;
 
 class CAS {
   public static $app;
@@ -36,8 +36,15 @@ class CAS {
     }
   }
   
+  public static function requireAuthentiction() {
+    if (!self::isAuthenticated()) {
+      self::login();
+    }
+  }
   
-  public static function getUser() {
+  
+  public static function getUsername() {
+    self::requireAuthentiction();
     if (self::$app['cas_settings']['host'] != false) {
       return phpCAS::getUser();
     } else {
@@ -45,14 +52,9 @@ class CAS {
     }
   }
   
-  public static function requireLogin($access, $controller) {
-    self::login();
-    if (!self::isAuthenticated()) {
-      return new Response('User is not authenticated!', 401);
-    }
-    
+  public static function getUser() {
     if (self::$app['club_api_key'] != false && self::$app['cas_settings']['host'] != false) {
-      $username = self::getUser();
+      $username = self::getUsername();
       $user = json_decode(file_get_contents('http://api.union.rpi.edu/query.php?task=GetUser&rcsid='.$username.'&apikey='.self::$app['club_api_key']), true)['result'];
       $user['id'] = $username;
       $dbuser = UserQuery::create()->findPK($username);
@@ -71,6 +73,13 @@ class CAS {
         'access' => 0
       ];
     }
+    
+    return $user;
+  }
+  
+  public static function requireLogin($access, $controller) {
+    self::requireAuthentiction();
+    $user = self::getUser();
     
     if ($user['access'] > $access) {
       return new Response("User is not authorized!", 401);
