@@ -1,13 +1,38 @@
 - extends 'base.haml'
 - block title 'REV - Blog'
 - block css
-  = asset('blog.sass')
+  - if not mobile
+    = asset('blog.sass')
   
 - block content
-  .row
-    .col-xs-10.col-xs-offset-2.blog-posts
-      - for blog_post in blog_posts
-        %section 
-          %h1= blog_post.title
-          %p.small= blog_post.author
-          = blog_post.body | markdown
+  %br
+  .container
+    .row
+      .col-xs-10.col-xs-offset-2
+        - for blog_post in blog_posts
+          .panel.panel-default
+            .panel-heading
+              %a.blog-title{:href => url('blogPost', {id: blog_post.id})}
+                %h1= blog_post.title
+              %p
+                - for tag in blog_post.tags
+                  %a.blog-tag{:href => url('blogTag', {tag: tag})} 
+                    %span.label.label-primary= tag
+              %p
+                = blog_post.name 
+                %small= blog_post.date | date('m/d/Y')
+                
+            .panel-body
+              .blog{:id => 'blog_' ~ blog_post.id}= blog_post.body | markdown
+          
+            - if loop.last and page != 0
+              .panel-footer
+                - if page != 1
+                  %a.btn.btn-primary{:href => '/blog/page/' ~ page - 1, :role => 'button'} &laquo; Prev
+                - else 
+                  %a.btn.btn-primary.disabled(role='button') &laquo; Prev
+                  
+                - if blog_post.id != 1
+                  %a.btn.btn-primary{:href => '/blog/page/' ~ page + 1, :role => 'button'} Next &raquo;
+                - else 
+                  %a.btn.btn-primary.disabled(role='button') Next &raquo;

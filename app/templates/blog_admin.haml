@@ -1,42 +1,54 @@
 - extends 'blog.haml'
 - block title 'REV - Blog (Admin)'
 - block js
-  = vendor('markdown/lib/markdown.js')
-  = vendor('to-markdown/src/to-markdown.js')
-  = vendor('bootstrap-markdown/css/bootstrap-markdown.min.css')
-  = vendor('bootstrap-markdown/js/bootstrap-markdown.js')
+  - if not mobile
+    = vendor('markdown/lib/markdown.js')
+    = vendor('to-markdown/src/to-markdown.js')
+    = vendor('bootstrap-markdown/css/bootstrap-markdown.min.css')
+    = vendor('bootstrap-markdown/js/bootstrap-markdown.js')
   
 - block content
   %br
   .container
     .row
       .col-xs-10.col-xs-offset-2
-        - for blog_post in blog_posts | reverse
-          .panel.panel-primary
+        - for blog_post in blog_posts
+          .panel.panel-default
             .panel-heading
-              %h1= blog_post.title 
-              %p.small
-                = blog_post.author 
-                = blog_post.date | date('m/d/Y')
+              %a.blog-title{:href => url('blogPost', {id: blog_post.id})}
+                %h1
+                  = blog_post.title 
+              %p
+                - for tag in blog_post.tags
+                  %a.blog-tag{:href => url('blogTag', {tag: tag})} 
+                    %span.label.label-primary= tag
+              %p
+                = blog_post.name
+                %small= blog_post.date | date('m/d/Y')
+                
             .panel-body
-              .blog(data-provide="markdown-editable" id="#{blog_post.title | replace({' ': ''})}")= blog_post.body | markdown
+              .blog{:id => 'blog_' ~ blog_post.id}= blog_post.body | markdown
               
             :javascript
-              $('##{blog_post.title | replace({' ': ''})}').markdown({
-                autofocus: false,
-                savable: true,
-                onSave: function(e){alert(e.$textarea.attr("id"))}
+              $("##{'blog_' ~ blog_post.id}").click(function() {
+                $("##{'blog_' ~ blog_post.id}").markdown({
+                  savable: true,
+                  onSave: function(e) {
+                    $.post("#{url('editBlogPost')}", {id: '#{blog_post.id}', body: e.getContent()})
+                      .done(window.location.reload());
+                    }
+                });
               });
-
-        .panel.panel-default
-          .panel-body
-            %h2 New Post
-            %form(action="#{url('newBlogPost')}" method="post" role="form")
-              .form-group
-                %label(for="title") Title
-                %input.form-control(name="title" id="title" type="text" placeholder="Title")
-              .form-group
-                %label(for="body") Body
-                %textarea.form-control(name="body" id="body" data-provide="markdown" rows="10") 
-              %button.btn.btn-primary(type="submit") Submit
-        %br
+              
+            - if loop.last and page != 0
+              .panel-footer
+                .row
+                  - if page != 1
+                    %a.btn.btn-primary{:href => '/blog/page/' ~ page - 1, :role => 'button'} &laquo; Prev
+                  - else 
+                    %a.btn.btn-primary.disabled(role='button') &laquo; Prev
+                    
+                  - if blog_post.id != 1
+                    %a.btn.btn-primary{:href => '/blog/page/' ~ page + 1, :role => 'button'} Next &raquo;
+                  - else 
+                    %a.btn.btn-primary.disabled(role='button') Next &raquo;

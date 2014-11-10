@@ -1,0 +1,24 @@
+- extends 'base.haml'
+- block title blog_post.title
+- block css
+  -if not mobile
+    = asset('blog.sass')
+  
+- block content
+  %br
+  .container
+    .row
+      .col-xs-10.col-xs-offset-2
+        .panel.panel-default
+          .panel-heading
+            %h1= blog_post.title
+            %p
+              - for tag in blog_post.tags
+                %a.blog-tag{:href => url('blogTag', {tag: tag})} 
+                  %span.label.label-primary= tag
+            %p
+              = blog_post.name
+              %small= blog_post.date | date('m/d/Y')
+              
+          .panel-body
+            .blog{:id => 'blog_' ~ blog_post.id}= blog_post.body | markdown

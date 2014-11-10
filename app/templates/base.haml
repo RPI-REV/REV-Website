@@ -34,7 +34,7 @@
             %span.icon-bar
             %span.icon-bar
             
-          %a.navbar-brand(href="#{url('home')}")
+          %a.navbar-brand(href=url('home'))
             = asset('logo.png', 30)
             
         .navbar-collapse.collapse.navbar-responsive-collapse
@@ -43,7 +43,10 @@
             
           %ul.nav.navbar-nav.navbar-right
             %li 
-              %a(href="#{url('sponsors')}") Sponsors
+              %a(href=url('blog')) Blog
+              
+            %li 
+              %a(href=url('sponsors')) Sponsors
               
             %li.dropdown
               %a.dropdown-toggle(href="#" data-toggle="dropdown") Team Links <b class="caret"></b>
@@ -69,7 +72,7 @@
             %a(href="mailto:rev@union.rpi.edu") Contact Us! <br>
             %a(href="http://www.union.rpi.edu") Rensselaer Union <br>
             %a(href="http://www.shell.com/global/environment-society/ecomarathon/events/americas.html") Shell Eco-Marathon <br>
-            %a(href="#{url('sponsors')}") Check out our sponsors!
+            %a(href=url('sponsors')) Check out our sponsors!
           
           .col-md-3
             %a(href="mailto:blejwp@rpi.edu") Paul Blejwas - President <br>

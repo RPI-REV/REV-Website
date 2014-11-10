@@ -8,7 +8,9 @@
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
     <column name="title" type="longvarchar" required="true"/>
     <column name="date" type="timestamp" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="tags" type="array"/>
     <column name="body" type="clob" required="true" lazyLoad="true"/>
+    <column name="name" type="longvarchar" required="true"/>
     <column name="author" type="varchar" size="10" required="true"/>
     <foreign-key foreignTable="user">
       <reference local="author" foreign="id"/>

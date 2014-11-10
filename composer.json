@@ -32,7 +32,9 @@
   "scripts": {
     "pre-update-cmd": "php -r \"@mkdir('app/propel/generated-classes');\"",
     "pre-install-cmd": "php -r \"@mkdir('app/propel/generated-classes');\"",
-    "start": "php -S localhost:8000 -t public_html",
+    "start": [
+      "echo *** starting server on port 8000",
+      "php -S localhost:8000 -t public_html"],
     "sql-build": "\"vendor/bin/propel\" sql:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
     "sql-deploy": "\"vendor/bin/propel\" sql:insert --input-dir=\"app/propel\" --sql-dir=\"app/propel/generated-sql\"",
     "sql-diff": "\"vendor/bin/propel\" diff --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-migration\"",
@@ -77,5 +79,8 @@
   },
   "autoload": {
     "classmap": ["app/propel/generated-classes/"]
+  },
+  "config": {
+    "process-timeout": 0
   }
 }

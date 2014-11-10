@@ -3,7 +3,10 @@
   %br
   .container
     .row
-      %h1 REV Admin Panel
+      %h1 
+        REV Admin Panel
+        %small Logged in as #{user.id}
+        
       .col-md-4
         %h3 Create A User
         %form(action="#{url('newUser')}" method="post" role="form")
