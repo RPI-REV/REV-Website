@@ -35,12 +35,12 @@
     "start": [
       "echo *** starting server on port 8000",
       "php -S localhost:8000 -t public_html"],
-    "sql-build": "\"vendor/bin/propel\" sql:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
-    "sql-deploy": "\"vendor/bin/propel\" sql:insert --input-dir=\"app/propel\" --sql-dir=\"app/propel/generated-sql\"",
+    "sql-build": "\"vendor/bin/propel\" sql:build --config-dir=\"app/propel\" --schema-dir=\"app/propel\" --output-dir=\"app/propel/generated-sql\"",
+    "sql-deploy": "\"vendor/bin/propel\" sql:insert --config-dir=\"app/propel\" --sql-dir=\"app/propel/generated-sql\"",
     "sql-diff": "\"vendor/bin/propel\" diff --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-migration\"",
     "sql-migrate": "\"vendor/bin/propel\" migrate --input-dir=\"app/propel/generated-migration\" --output-dir=\"app/propel/generated-migration\"",
-    "model-build": "\"vendor/bin/propel\" model:build --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-classes\"",
-    "config-build": "\"vendor/bin/propel\" config:convert --input-dir=\"app/propel\" --output-dir=\"app/propel/generated-conf\"",
+    "model-build": "\"vendor/bin/propel\" model:build --config-dir=\"app/propel\" --schema-dir=\"app/propel\" --output-dir=\"app/propel/generated-classes\"",
+    "config-build": "\"vendor/bin/propel\" config:convert --config-dir=\"app/propel\" --output-dir=\"app/propel/generated-conf\"",
     "delete-cache": "php -r \"function rrmdir($dir){if(is_dir($dir)){$objects = scandir($dir);foreach($objects as $object){if($object != '.' && $object != '..'){if(filetype($dir.'/'.$object) == 'dir'){rrmdir($dir.'/'.$object);}else{unlink($dir.'/'.$object);}}}reset($objects);rmdir($dir);}}rrmdir(__DIR__.'/app/assets/cache');\"",
     "build": [
       "echo *** clearing cache",
