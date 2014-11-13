@@ -12,5 +12,8 @@
     "host": "cas-auth.rpi.edu",
     "port": 443,
     "method": "/cas"
+  },
+  "cache_settings": {
+    "image_cache": false
   }
 }

@@ -1,6 +1,6 @@
 <?php
 
-$app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset, $height=0, $width=0) {
+$app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset, $height=0, $width=0) use ($app) {
   $splode = explode('.', $asset);
   $type = end($splode);
   $file = reset($splode);
@@ -10,7 +10,11 @@ $app['twig']->addFunction(new \Twig_SimpleFunction('asset', function ($asset, $h
   } else if ($type === 'sass' || $type === 'css') {
     echo '<link rel="stylesheet" href="/assets/'.$type.'/'.$file.'">';
   } else if ($type === 'jpg' || $type === 'png') {
-    echo '<img src="/assets/'.$type.'/'.$file.'?height='.$height.'&width='.$width.'" alt="Image"/>';
+    if ($app['cache_settings']['image_cache']) {
+      echo '<img src="/assets/'.$type.'/'.$file.'?height='.$height.'&width='.$width.'" alt="Image"/>';
+    } else {
+      echo '<img src="/assets/'.$type.'/'.$file.'" height='.($height == 0 ? '' : $height).'" width="'.($width == 0 ? '' : $width).'" alt="Image"/>';      
+    }
   } else {
     echo '';
   }

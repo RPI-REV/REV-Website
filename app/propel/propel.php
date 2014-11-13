@@ -1,8 +1,8 @@
 <?php
 
 $settings = json_decode(file_get_contents(__DIR__.'/../config/config.json'), true);
-$dbname = $settings['db_settings']['dbname']; // 'solarrac_test';
-$user = $settings['db_settings']['user']; // 'solarrac_admin';
+$dbname = $settings['db_settings']['dbname'];
+$user = $settings['db_settings']['user'];
 $password = $settings['db_settings']['password'];
 $host = $settings['db_settings']['host'];
 
