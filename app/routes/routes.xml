@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+  <route name="home" route="/" template="home.haml"/>
+  <route name="sponsors" route="/sponsors/" template="sponsors.haml"/>  
+  <route name="cars" route="/cars/" template="cars.haml"/>
+  <route name="marketing" route="/marketing/" template="marketing.haml"/>
+  <route name="blog" route="/blog/" controller="blog"/>
+  <route name="blogPage" route="/blog/page/{page}" controller="blogPage"/>
+  <route name="blogPost" route="/blog/id/{id}/" controller="blogPost"/>
+  <route name="blogTag" route="/blog/tag/{tag}" controller="blogTag"/>
+  <route name="createBlogPost" route="/blog/new/" controller="createBlogPost"/>
+  <route name="newBlogPost" route="/blog/new/" method="post" controller="newBlogPost"/>
+  <route name="editBlogPost" route="/blog/edit/" method="post" controller="editBlogPost"/>
+  <route name="admin" route="/admin/" controller="admin"/>
+  <route name="newUser" route="/admin/" method="post" controller="newUser"/>
+  <route route="/assets/{type}/{name}" controller="assets">
+    <assert name=".*"/>
+  </route>
+</routes>

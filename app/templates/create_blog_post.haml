@@ -1,0 +1,33 @@
+- extends 'base.haml'
+- block title 'New Blog Post'
+- block css
+  -if not mobile
+    = asset('blog.sass')
+    
+- block js
+  = vendor('markdown/lib/markdown.js')
+  = vendor('to-markdown/src/to-markdown.js')
+  = vendor('bootstrap-markdown/css/bootstrap-markdown.min.css')
+  = vendor('bootstrap-markdown/js/bootstrap-markdown.js')
+  
+- block content
+  %br
+  .container
+    .row
+      .col-xs-10.col-xs-offset-2
+        .panel.panel-default
+          .panel-heading
+            %h2 New Post
+          .panel-body
+            %form(action=url('newBlogPost') method="post" role="form")
+              .form-group
+                %label(for="title") Title
+                %input.form-control(name="title" id="title" type="text" placeholder="Title")
+              .form-group
+                %label(for="tags") Tags (Comma seperated)
+                %input.form-control(name="tags" id="tags" type="text" placeholder="tag1, tag2, tag3")
+              .form-group
+                %label(for="body") Body
+                %textarea.form-control(name="body" id="body" data-provide="markdown" rows="10") 
+              %button.btn.btn-primary(type="submit") Submit
+        %br

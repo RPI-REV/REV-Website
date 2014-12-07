@@ -1,0 +1,19 @@
+{
+  "debug": true,
+  "club_api_key": false,
+  "db_settings": {
+    "host": "localhost",
+    "dbname": "solarrac_website",
+    "user": "solarrac",
+    "password": "solarrac"
+  },
+  "cas_settings": {
+    "enabled": true,
+    "host": "cas-auth.rpi.edu",
+    "port": 443,
+    "method": "/cas"
+  },
+  "cache_settings": {
+    "image_cache": false
+  }
+}

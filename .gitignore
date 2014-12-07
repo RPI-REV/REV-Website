@@ -18,8 +18,8 @@ app/propel/generated-classes/*
 app/propel/generated-sql/*
 app/propel/generated-conf/*
 
-# Keys
-**/key.ini
-
 # Cache
 app/assets/cache/*
+
+# IntelliJ Family
+.idea/

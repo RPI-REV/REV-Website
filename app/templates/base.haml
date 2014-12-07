@@ -1,10 +1,3 @@
-- macro bigspace()
-  .container
-    .row
-      .col-lg-6 <br>
-
-- import _self as base
-
 !!!
 %html 
   %head 
@@ -12,81 +5,72 @@
     %meta(name="viewport" content="width=device-width, initial-scale=1") 
     %title 
       - block title "REV"
-    
-    #fb-root
-    :javascript
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    
-    = vendor('bootstrap/css/bootstrap.min.css')
+      
+    = vendor('bootstrap/dist/css/bootstrap.min.css')
+    = vendor('bootstrap/dist/css/bootstrap-theme.min.css')
     = asset('base.sass')
     - block css ''
-
+    = vendor('jquery/dist/jquery.min.js')
+    = vendor('bootstrap/dist/js/bootstrap.js')
+    = asset('scroll.coffee')
+    = asset('facebook.js')
+    - block js ''
     
   %body 
-    .navbar.navbar-default.navbar-fixed-top#nav 
-      .navbar-header 
-        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-          
-        %a.navbar-brand(href="/")
-          %img(src="/images/logo.png" alt="REV" height="30" width="69")
-          
-      .navbar-collapse.collapse.navbar-responsive-collapse
-        %ul.nav.navbar-nav.scroll-buttons
-          - block nav_buttons ""
-          
-        %ul.nav.navbar-nav.navbar-right
-          %li 
-            %a(href="/sponsors") Sponsors
+    - block navbar
+      .navbar.navbar-default.navbar-fixed-top#nav
+        .navbar-header 
+          %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
             
-          %li.dropdown
-            %a.dropdown-toggle(href="#" data-toggle="dropdown") Team Links <b class="caret"></b>
-            %ul.dropdown-menu
-              - block dropdown
-                %li <a href="/">Main</a>
-                %li <a href="/marketing">Marketing</a>
-                %li <a href="/cars">Cars</a>
-                %li.divider
-                %li <a href="https://www.facebook.com/pages/Rensselaer-Electric-Vehicle-REV/115564911841565">Facebook</a>
-                %li <a href="https://www.flickr.com/photos/117673995@N07/">Flickr</a>
-         
-    = base.bigspace() 
-    - block content ""
+          %a.navbar-brand(href=url('home'))
+            %img(src="/assets/png/logo" alt="REV" height="30" width="69")
             
-    %hr.featurette-divider
-    #thisTeamisFantastic
-      %center 
-        %h1 We're a pretty great club to join
-        .row
-          %img#easter_egg(src="/images/misc/easter_egg.png" height="800")
-        
-  %footer
-    .row
-      .col-md-3
-        %a(href="mailto:rev@union.rpi.edu") Contact Us! <br>
-        %a(href="http://www.union.rpi.edu") Rensselaer Union <br>
-        %a(href="http://www.shell.com/global/environment-society/ecomarathon/events/americas.html") Shell Eco-Marathon <br>
-        %a(href="/sponsors") Check out our sponsors!
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          %ul.nav.navbar-nav.scroll-buttons
+            - block nav_buttons ""
+            
+          %ul.nav.navbar-nav.navbar-right
+            %li 
+              %a(href=url('blog')) Blog
+              
+            %li 
+              %a(href=url('sponsors')) Sponsors
+              
+            %li.dropdown
+              %a.dropdown-toggle(href="#" data-toggle="dropdown") Team Links <b class="caret"></b>
+              %ul.dropdown-menu
+                - block dropdown
+                  %li <a href="#{url('home')}">Main</a>
+                  %li <a href="#{url('marketing')}">Marketing</a>
+                  %li <a href="#{url('cars')}">Cars</a>
+                  %li.divider
+                  %li <a href="https://www.facebook.com/pages/Rensselaer-Electric-Vehicle-REV/115564911841565">Facebook</a>
+                  %li <a href="https://www.flickr.com/photos/117673995@N07/">Flickr</a>
+           
+    %br 
+    %br
+    .wrapper
+      - block content ""
+      .push
       
-      .col-md-3
-        %a(href="mailto:blejwp@rpi.edu") Paul Blejwas - President <br>
-        %a(href="mailto:lamb2@rpi.edu") Ben Lam - Project Manager <br>
-        %a(href="mailtohuob@rpi.edu") Belvia Huo - Vice President <br>
-        %a(href="mailto:delanr3@rpi.edu") Ryan Delaney - Webmaster
-        
-      .col-md-3
-        .fb-like(data-href="https://www.facebook.com/pages/Rensselaer-Electric-Vehicle-REV/115564911841565" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme="dark")
-        
-    = vendor('jquery/jquery.min.js')
-    = vendor('bootstrap/js/bootstrap.js')
-    = asset('konami.js')
-    = asset('scroll.coffee')
-    - block js ''
+    - block footer
+      .footer
+        .row
+          .col-md-3
+            %a(href="mailto:rev@union.rpi.edu") Contact Us! <br>
+            %a(href="http://www.union.rpi.edu") Rensselaer Union <br>
+            %a(href="http://www.shell.com/global/environment-society/ecomarathon/events/americas.html") Shell Eco-Marathon <br>
+            %a(href=url('sponsors')) Check out our sponsors!
+          
+          - if not mobile
+            .col-md-3
+              %a(href="mailto:blejwp@rpi.edu") Paul Blejwas - President <br>
+              %a(href="mailto:lamb2@rpi.edu") Ben Lam - Project Manager <br>
+              %a(href="mailto:huob@rpi.edu") Belvia Huo - Vice President <br>
+              %a(href="mailto:delanr3@rpi.edu") Ryan Delaney - Webmaster
+              
+            .col-md-3
+              .fb-like(data-href="https://www.facebook.com/pages/Rensselaer-Electric-Vehicle-REV/115564911841565" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" colorscheme="dark"  )

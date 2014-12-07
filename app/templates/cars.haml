@@ -11,11 +11,12 @@
   %li <a href="#photon">Photon</a>
   
 -block content
+  %br 
   %section#tachyon
     .container
       %center 
         %h1 Tachyon
-        .row.cars-image <img src="/images/cars/tachyon.jpg">
+        .row.cars-image= asset('cars/tachyon.jpg')
         .row
           %p
             Our most recent car is Tachyon, and it by far our largest project 
@@ -28,7 +29,7 @@
     .container
       %center 
         %h1 TESTA
-        .row.cars-image <img src="/images/cars/testa.png">
+        .row.cars-image= asset('cars/testa.png')
         .row
           %p
             TESTA was REVs second car. There were two TESTA iterations. The 
@@ -43,7 +44,7 @@
     .container
       %center 
         %h1 Photon
-        .row.cars-image <img src="/images/cars/photon.png">
+        .row.cars-image= asset('cars/photon.png')
         .row
           %p
             Photon was REVs first car. It ran on a 36 VDC system, with a 
