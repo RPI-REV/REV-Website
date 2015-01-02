@@ -1,6 +1,6 @@
 {
   "debug": true,
-  "club_api_key": false,
+  "secret": "ULTRASECRETKEY",
   "db_settings": {
     "host": "localhost",
     "dbname": "solarrac_website",

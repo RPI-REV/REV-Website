@@ -3,18 +3,25 @@
   %br
   .container
     .row
-      %h1 
+      %h1
         REV Admin Panel
         %small Logged in as #{user.id}
-        
+
       .col-md-4
-        %h3 Create A User
-        %form(action="#{url('newUser')}" method="post" role="form")
+        %h3 Give Permissions
+        %form(method="post" role="form")
           .form-group
             %label(for="id") RCS ID
             %input.form-control(name="id" id="id" type="text" placeholder="smithj2")
           .form-group
-            %label(for="access") Access Level
-            %input.form-control(name="access" id="access" type="number" value="10")
+            %label(for="name") Name
+            %input.form-control(name="name" id="name" type="text" placeholder="Joe Smith")
+          .form-group
+            %label(for="permissions") Permissions
+            %input.form-control(name="permissions" id="permissions" type="text" placeholder="PERMISION_NAME, PERMISSION_NAME...")
+          .form-group
+            .checkbox
+              %label
+                %input(type="checkbox" id="append" name="append") Add Permissions
           %button.btn.btn-primary(type="submit") Submit
   %br

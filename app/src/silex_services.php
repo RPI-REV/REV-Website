@@ -11,7 +11,7 @@ use Igorw\Silex\ConfigServiceProvider;
 $app->register(new UrlGeneratorServiceProvider());
 
 $app->register(new TwigServiceProvider(), [
-  'twig.path' => '../app/templates' 
+  'twig.path' => '../app/templates'
 ]);
 
 $app['twig']->addExtension(new MarkdownExtension(new MichelfMarkdownEngine()));
@@ -22,4 +22,4 @@ $app->register(new MtHamlServiceProvider());
 
 $app->register(new MobileDetectServiceProvider());
 
-$app->register(new ConfigServiceProvider(__DIR__."/../config/config.json"));
+$app->register(new ConfigServiceProvider(__DIR__."/../config.json"));

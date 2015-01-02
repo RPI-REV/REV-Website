@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="solarrac_website" defaultIdMethod="native">
-  <table name="user">
+  <table name="user" phpName="User">
     <column name="id" type="varchar" size="10" required="true" primaryKey="true"/>
-    <column name="access" type="integer" defaultValue ="10"/>
+    <column name="name" type="longvarchar" required="true"/>
+    <column name="permissions" type="array"/>
   </table>
   <table name="blog_post" phpName="BlogPost">
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
@@ -10,7 +11,6 @@
     <column name="date" type="timestamp" defaultExpr="CURRENT_TIMESTAMP"/>
     <column name="tags" type="array"/>
     <column name="body" type="clob" required="true" lazyLoad="true"/>
-    <column name="name" type="longvarchar" required="true"/>
     <column name="author" type="varchar" size="10" required="true"/>
     <foreign-key foreignTable="user">
       <reference local="author" foreign="id"/>

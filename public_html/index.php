@@ -2,7 +2,6 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../app/src/revlib.php';
-require_once __DIR__.'/../app/src/require_constants.php';
 
 $app = new Silex\Application();
 
