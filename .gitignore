@@ -17,6 +17,7 @@ public_html/vendor/*
 app/propel/generated-classes/*
 app/propel/generated-sql/*
 app/propel/generated-conf/*
+app/propel/generated-migration/*
 
 # Cache
 app/assets/cache/*

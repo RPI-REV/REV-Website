@@ -3,7 +3,14 @@
 - block css
   -if not mobile
     = asset('blog.sass')
-  
+
+- block js
+  - if admin and not mobile
+    = vendor('markdown/lib/markdown.js')
+    = vendor('to-markdown/src/to-markdown.js')
+    = vendor('bootstrap-markdown/css/bootstrap-markdown.min.css')
+    = vendor('bootstrap-markdown/js/bootstrap-markdown.js')
+
 - block content
   %br
   .container
@@ -14,11 +21,23 @@
             %h1= blog_post.title
             %p
               - for tag in blog_post.tags
-                %a.blog-tag{:href => url('blogTag', {tag: tag})} 
+                %a.blog-tag{:href => url('blogTag', {tag: tag})}
                   %span.label.label-primary= tag
             %p
-              = blog_post.name
+              = blog_post.author.name
               %small= blog_post.date | date('m/d/Y')
-              
+
           .panel-body
             .blog{:id => 'blog_' ~ blog_post.id}= blog_post.body | markdown
+
+          - if admin
+            :javascript
+              $("##{'blog_' ~ blog_post.id}").click(function() {
+                $("##{'blog_' ~ blog_post.id}").markdown({
+                  savable: true,
+                  onSave: function(e) {
+                    $.post("#{url('editBlogPost')}", {id: '#{blog_post.id}', body: e.getContent()})
+                      .done(window.location.reload());
+                    }
+                });
+              });

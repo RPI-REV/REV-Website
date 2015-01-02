@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+  <!-- Static Routes -->
+  <route name="home" path="/" template="home.haml"/>
+  <route name="sponsors" path="/sponsors/" template="sponsors.haml"/>
+  <route name="cars" path="/cars/" template="cars.haml"/>
+  <route name="marketing" path="/marketing/" template="marketing.haml"/>
+
+  <!-- Blog routes -->
+  <route name="blog" path="/blog/" controller="blog"/>
+  <route name="blogPage" path="/blog/page/{page}" controller="blogPage"/>
+  <route name="blogPost" path="/blog/id/{id}/" controller="blogPost"/>
+  <route name="blogTag" path="/blog/tag/{tag}" controller="blogTag"/>
+  <route name="editBlogPost" path="/blog/edit/" method="post" controller="editBlogPost"/>
+  <app name="newBlogPost" path="/blog/new/" controller="newBlogPost"/>
+
+  <!-- Users and stuff -->
+  <route name="initUser" path="/init/" method="get" controller="initUser"/>
+  <app name="admin" path="/admin/" controller="admin"/>
+
+  <!-- Assets -->
+  <route path="/assets/{type}/{name}" controller="assets">
+    <assert name=".*"/>
+  </route>
+</routes>
