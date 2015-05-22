@@ -13,5 +13,5 @@ $ ->
     66: 'b'
 
   $(document).keyup (event) ->
-    combination += key_dict[event.which]
+    combination += keys[event.which]
     $('#thisTeamisFantastic').show() if combination is 'uuddlrlrba'
